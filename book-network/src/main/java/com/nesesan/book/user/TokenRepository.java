@@ -1,7 +1,6 @@
-package com.nesesan.book.role;
+package com.nesesan.book.user;
 
 
-import com.nesesan.book.user.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
