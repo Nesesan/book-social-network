@@ -3,25 +3,23 @@ services:
     container_name: postgres-sql-bsn
     image: postgres
     environment:
-      POSTGRES_USER: username  # Correction: Underscores, pas de tirets
+      POSTGRES_USER: username
       POSTGRES_PASSWORD: password
       PGDATA: /var/lib/postgresql/data
       POSTGRES_DB: book_social_network
     volumes:
-      - postgres:/var/lib/postgresql/data  # Correction: chemin complet du volume
+      - postgres:/data/postgres
     ports:
-      - "5432:5432"  # Correction: format des ports
+      - 5432:5432
     networks:
       - spring-demo
     restart: unless-stopped
-
   mail-dev:
     container_name: mail-dev-bsn
     image: maildev/maildev
     ports:
-      - "1080:1080"  # Correction: format des ports
-      - "1025:1025"  # Correction: format des ports
-
+      - 1080:1080
+      - 1025:1025
 networks:
   spring-demo:
     driver: bridge

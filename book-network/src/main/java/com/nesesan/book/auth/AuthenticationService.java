@@ -9,7 +9,6 @@ import com.nesesan.book.user.TokenRepository;
 import com.nesesan.book.user.User;
 import com.nesesan.book.user.UserRepository;
 import jakarta.mail.MessagingException;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
