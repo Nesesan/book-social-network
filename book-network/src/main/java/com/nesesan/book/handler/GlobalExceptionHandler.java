@@ -1,7 +1,7 @@
 package com.nesesan.book.handler;
 
+import com.nesesan.book.exception.OperationNotPermittedException;
 import jakarta.mail.MessagingException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -32,6 +32,7 @@ public class GlobalExceptionHandler {
                 );
 
     }
+
     @ExceptionHandler(DisabledException.class)
     public ResponseEntity<ExceptionResponse> handleException(DisabledException exp) {
         return ResponseEntity
@@ -44,6 +45,7 @@ public class GlobalExceptionHandler {
                                 .build()
                 );
     }
+
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ExceptionResponse> handleException(BadCredentialsException exp) {
         return ResponseEntity
@@ -56,6 +58,7 @@ public class GlobalExceptionHandler {
                                 .build()
                 );
     }
+
     @ExceptionHandler(MessagingException.class)
     public ResponseEntity<ExceptionResponse> handleException(MessagingException exp) {
         return ResponseEntity
@@ -66,6 +69,18 @@ public class GlobalExceptionHandler {
                                 .build()
                 );
     }
+
+    @ExceptionHandler(MessagingException.class)
+    public ResponseEntity<ExceptionResponse> handleException(OperationNotPermittedException exp) {
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(
+                        ExceptionResponse.builder()
+                                .error(exp.getMessage())
+                                .build()
+                );
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ExceptionResponse> handleException(MethodArgumentNotValidException exp) {
         Set<String> errors = new HashSet<>();
@@ -82,6 +97,7 @@ public class GlobalExceptionHandler {
                                 .build()
                 );
     }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ExceptionResponse> handleException(Exception exp) {
         // log the exception

@@ -1,5 +1,6 @@
 package com.nesesan.book.book;
 
+import com.nesesan.book.file.FileUtils;
 import com.nesesan.book.history.BookTransactionHistory;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +29,7 @@ public class BookMapper {
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
                 .owner(book.getOwner().fullName())
-                // todo implement this later
-                //.cover()
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
                 .build();
     }
 
@@ -41,8 +41,8 @@ public class BookMapper {
                 .isbn(history.getBook().getIsbn())
                 .rate(history.getBook().getRate())
                 .returned(history.isReturned())
-                .returnedApproved(history.isReturnedApproved())
+                .returnedApproved(history.isReturnApproved())
                 .build();
     }
-    }
 }
+
