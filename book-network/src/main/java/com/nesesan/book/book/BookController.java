@@ -118,6 +118,6 @@ public class BookController {
             Authentication connectedUser
     ){
         service.uploadBookCoverPicture(file,connectedUser, bookId);
-        return ResponseEntity.accepted().build()
+        return ResponseEntity.accepted().build();
     }
 }
