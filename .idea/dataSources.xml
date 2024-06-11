@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="book_social_network@localhost" uuid="31894728-0e5e-4b6a-988b-e93e8ad0e0d7">
+    <data-source source="LOCAL" name="book_social_network@localhost" uuid="9997ae12-1796-4bf1-b800-c6dca1bcc496">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
-      <remarks>$PROJECT_DIR$/book-network/src/main/resources/application-dev.yml</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/book_social_network</jdbc-url>
       <jdbc-additional-properties>

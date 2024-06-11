@@ -1,29 +1,28 @@
 package com.nesesan.book.book;
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record BookRequest(
-
         Integer id,
-        @NotNull(message ="100")
-        @NotEmpty(message ="100")
+
+        @NotNull(message = "100")
+        @NotBlank(message = "100")
         String title,
-        @NotNull(message ="101")
-        @NotEmpty(message ="101")
 
+        @NotNull(message = "101")
+        @NotBlank(message = "101")
         String authorName,
-        @NotNull(message ="102")
-        @NotEmpty(message ="102")
 
-        String isbn102,
-        @NotNull(message ="102")
-        @NotEmpty(message ="102")
+        @NotNull(message = "102")
+        @NotBlank(message = "102")
+        String isbn,
 
+        @NotNull(message = "102")
+        @NotBlank(message = "102")
         String synopsis,
-        @NotNull(message ="103")
-        @NotEmpty(message ="103")
 
-        boolean shareable
+        @NotNull(message = "103")
+        Boolean shareable
 ) {
 }

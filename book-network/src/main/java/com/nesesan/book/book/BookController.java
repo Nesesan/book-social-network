@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("books")
@@ -28,7 +27,7 @@ public class BookController {
         return ResponseEntity.ok(service.save(request, connectedUser));
     }
 
-    @GetMapping("{book_id}")
+    @GetMapping("/{book_id}")
     public ResponseEntity<BookResponse> findBookById(
             @PathVariable("book_id") Integer bookId
     ) {

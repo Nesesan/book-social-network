@@ -30,7 +30,8 @@ import java.util.stream.Collectors;
 public class User implements UserDetails, Principal {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_id_sequence", allocationSize = 1)
     private Integer id;
     private String firstname;
     private String lastname;
