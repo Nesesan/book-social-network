@@ -175,9 +175,9 @@ public class BookService {
         BookTransactionHistory bookTransactionHistory = transactionHistoryRepository.findByBookIdAndUserId(bookId, user.getId())
                 .orElseThrow(()-> new OperationNotPermittedException("You did not borrow this book"));
         bookTransactionHistory.setReturned(true);
+        bookTransactionHistory.setReturnApproved(false);
         return transactionHistoryRepository.save(bookTransactionHistory).getId();
-
-        }
+    }
 
     public Integer approvedReturnBorrowBook(Integer bookId, Authentication connectedUser) {
         Book book = bookRepository.findById(bookId)

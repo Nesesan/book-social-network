@@ -19,7 +19,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class BookTransactionHistory  extends BaseEntity {
+public class BookTransactionHistory extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -27,7 +27,6 @@ public class BookTransactionHistory  extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
-
     private boolean returned;
     private boolean returnApproved;
 }

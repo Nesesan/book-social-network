@@ -14,13 +14,20 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.logging.Logger;
 
 @Service
 public class JwtService {
+    private static final Logger logger = Logger.getLogger(JwtService.class.getName());
+
     @Value("${application.security.jwt.secret-Key}")
     private String secretKey;
+
     @Value("${application.security.jwt.expiration}")
     private long jwtExpiration;
+
+    @Value("${application.security.jwt.clock-skew}")
+    private long clockSkew;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -34,23 +41,20 @@ public class JwtService {
     public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
     }
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails
-    ) {
+
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         return buildToken(extraClaims, userDetails, jwtExpiration);
     }
 
-
-    private String buildToken(
-            Map<String, Object> extraClaims,
-            UserDetails userDetails,
-            long expiration
-    ) {
+    private String buildToken(Map<String, Object> extraClaims, UserDetails userDetails, long expiration) {
         var authorities = userDetails.getAuthorities()
-                .stream().
-                map(GrantedAuthority::getAuthority)
+                .stream()
+                .map(GrantedAuthority::getAuthority)
                 .toList();
-        return Jwts
-                .builder()
+
+        logger.info("Generating token for user: " + userDetails.getUsername());
+
+        return Jwts.builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
@@ -66,7 +70,7 @@ public class JwtService {
     }
 
     private boolean isTokenExpired(String token) {
-        return extractExpiration(token).before(new Date());
+        return extractExpiration(token).before(new Date(System.currentTimeMillis() - clockSkew));
     }
 
     private Date extractExpiration(String token) {
@@ -74,9 +78,9 @@ public class JwtService {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts
-                .parserBuilder()
+        return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())
+                .setAllowedClockSkewSeconds(clockSkew / 1000) // Convertir en secondes
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
