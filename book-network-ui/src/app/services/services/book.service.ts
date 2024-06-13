@@ -34,8 +34,8 @@ import { updateArchivedStatus } from '../fn/book/update-archived-status';
 import { UpdateArchivedStatus$Params } from '../fn/book/update-archived-status';
 import { updateShareableStatus } from '../fn/book/update-shareable-status';
 import { UpdateShareableStatus$Params } from '../fn/book/update-shareable-status';
-import { uploadCoverPicture } from '../fn/book/upload-cover-picture';
-import { UploadCoverPicture$Params } from '../fn/book/upload-cover-picture';
+import { uploadBookCoverPicture } from '../fn/book/upload-book-cover-picture';
+import { UploadBookCoverPicture$Params } from '../fn/book/upload-book-cover-picture';
 
 @Injectable({ providedIn: 'root' })
 export class BookService extends BaseService {
@@ -93,29 +93,29 @@ export class BookService extends BaseService {
     );
   }
 
-  /** Path part for operation `uploadCoverPicture()` */
-  static readonly UploadCoverPicturePath = '/books/cover/{book_id}';
+  /** Path part for operation `uploadBookCoverPicture()` */
+  static readonly UploadBookCoverPicturePath = '/books/cover/{book_id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `uploadCoverPicture()` instead.
+   * To access only the response body, use `uploadBookCoverPicture()` instead.
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  uploadCoverPicture$Response(params: UploadCoverPicture$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+  uploadBookCoverPicture$Response(params: UploadBookCoverPicture$Params, context?: HttpContext): Observable<StrictHttpResponse<{
 }>> {
-    return uploadCoverPicture(this.http, this.rootUrl, params, context);
+    return uploadBookCoverPicture(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `uploadCoverPicture$Response()` instead.
+   * To access the full response (for headers, for example), `uploadBookCoverPicture$Response()` instead.
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  uploadCoverPicture(params: UploadCoverPicture$Params, context?: HttpContext): Observable<{
+  uploadBookCoverPicture(params: UploadBookCoverPicture$Params, context?: HttpContext): Observable<{
 }> {
-    return this.uploadCoverPicture$Response(params, context).pipe(
+    return this.uploadBookCoverPicture$Response(params, context).pipe(
       map((r: StrictHttpResponse<{
 }>): {
 } => r.body)

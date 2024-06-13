@@ -5,6 +5,9 @@ import { BookRoutingModule } from './book-routing.module';
 import { MenuComponent } from './components/menu/menu.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { MyBooksComponent } from './pages/my-books/my-books.component';
+import { ManageBookComponent } from './pages/manage-book/manage-book.component';
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -13,6 +16,8 @@ import { RatingComponent } from './components/rating/rating.component';
         MenuComponent,
         BookCardComponent,
         RatingComponent,
+        MyBooksComponent,
+        ManageBookComponent,
     ],
     exports: [
         MenuComponent,
@@ -21,7 +26,8 @@ import { RatingComponent } from './components/rating/rating.component';
     imports: [
         CommonModule,
         BookRoutingModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        FormsModule
     ]
 })
 export class BookModule { }

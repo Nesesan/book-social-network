@@ -17,13 +17,13 @@
   },
   "servers": [
     {
-      "url": "http://localhost8088/api/v1",
+      "url": "http://localhost:8088/api/v1",
       "description": "local ENV"
     }
   ],
   "security": [
     {
-      "bearerAuth": [ ]
+      "bearerAuth": []
     }
   ],
   "paths": {
@@ -134,7 +134,7 @@
         "tags": [
           "book"
         ],
-        "operationId": "uploadCoverPicture",
+        "operationId": "uploadBookCoverPicture",
         "parameters": [
           {
             "name": "book_id",

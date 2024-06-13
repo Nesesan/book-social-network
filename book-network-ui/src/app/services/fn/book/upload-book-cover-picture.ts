@@ -7,16 +7,16 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface UploadCoverPicture$Params {
+export interface UploadBookCoverPicture$Params {
   book_id: number;
       body?: {
 'file': Blob;
 }
 }
 
-export function uploadCoverPicture(http: HttpClient, rootUrl: string, params: UploadCoverPicture$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+export function uploadBookCoverPicture(http: HttpClient, rootUrl: string, params: UploadBookCoverPicture$Params, context?: HttpContext): Observable<StrictHttpResponse<{
 }>> {
-  const rb = new RequestBuilder(rootUrl, uploadCoverPicture.PATH, 'post');
+  const rb = new RequestBuilder(rootUrl, uploadBookCoverPicture.PATH, 'post');
   if (params) {
     rb.path('book_id', params.book_id, {});
     rb.body(params.body, 'multipart/form-data');
@@ -33,4 +33,4 @@ export function uploadCoverPicture(http: HttpClient, rootUrl: string, params: Up
   );
 }
 
-uploadCoverPicture.PATH = '/books/cover/{book_id}';
+uploadBookCoverPicture.PATH = '/books/cover/{book_id}';

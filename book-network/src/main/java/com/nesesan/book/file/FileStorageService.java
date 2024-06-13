@@ -50,6 +50,7 @@ public class FileStorageService {
         try {
             Files.write(targetPath, sourceFile.getBytes());
             log.info("File saved to " + targetFilePath);
+            return targetFilePath;
         } catch (IOException e) {
             log.error("File was not saved", e);
         }

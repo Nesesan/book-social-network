@@ -110,7 +110,7 @@ public class BookController {
     }
 
     @PostMapping(value = "/cover/{book_id}", consumes = "multipart/form-data")
-    public ResponseEntity<?>uploadCoverPicture(
+    public ResponseEntity<?>uploadBookCoverPicture(
             @PathVariable("book_id") Integer bookId,
             @Parameter()
             @RequestPart("file") MultipartFile file,
