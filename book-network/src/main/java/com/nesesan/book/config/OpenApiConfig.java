@@ -10,14 +10,13 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 
-import javax.naming.Name;
 
 @OpenAPIDefinition(
         info = @Info(
                 contact = @Contact(
                         name = "Nesesan",
                         email = "email@mail.com",
-                        url = "http://some-url.com"
+                        url = "https://some-url.com"
                 ),
                 description = "OpenApi documentation for Spring Security",
                 title = "OpenApi specification - Nesesan",
@@ -31,7 +30,7 @@ import javax.naming.Name;
         servers =
                 @Server(
                         description = "local ENV",
-                        url = "http://localhost8088/api/v1"
+                        url = "http://localhost:8088/api/v1"
                 ),
         security =
                 @SecurityRequirement(
