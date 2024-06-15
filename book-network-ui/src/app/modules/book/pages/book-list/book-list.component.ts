@@ -20,10 +20,10 @@ export class BookListComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.bookServiceBooks();
+    this.findAllBooks();
   }
 
-  private bookServiceBooks() {
+  private findAllBooks() {
     this.bookService.findAllBooks({
       page: this.page,
       size: this.size
@@ -33,4 +33,5 @@ export class BookListComponent implements OnInit{
       }
     })
   }
+
 }
