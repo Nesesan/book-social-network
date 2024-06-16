@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BookRequest} from "../../../../services/models/book-request";
 import {BookService} from "../../../../services/services/book.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-manage-book',
   templateUrl: './manage-book.component.html',
   styleUrls: ['./manage-book.component.scss']
 })
-export class ManageBookComponent {
+export class ManageBookComponent implements OnInit{
 
   bookRequest: BookRequest = {authorName: "", isbn: "", shareable: false, synopsis: "", title: ""};
   errorMsg:Array<string> = [];
@@ -17,7 +18,8 @@ export class ManageBookComponent {
 
   constructor(
     private bookService:BookService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   onFileSelected(event: any) {
@@ -52,5 +54,28 @@ export class ManageBookComponent {
         this.errorMsg = err.error.validationErrors;
       }
     })
+  }
+
+  ngOnInit(): void {
+    const bookId = this.activatedRoute.snapshot.params['bookId'];
+    if(bookId) {
+      this.bookService.findBookById({
+        'book_id': bookId
+      }).subscribe({
+        next:(book) => {
+          this.bookRequest = {
+            id: book.id,
+            title: book.title as string,
+            authorName: book.authorName as string,
+            isbn: book.isbn as string,
+            synopsis: book.synopsis as string,
+            shareable: book.shareable as boolean
+          }
+          if (book.cover) {
+            this.selectedPicture = 'data:image/jpg;base64,' + book.cover
+          }
+        }
+      })
+    }
   }
 }
