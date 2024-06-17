@@ -12,7 +12,7 @@ import {BookResponse} from "../../../../services/models/book-response";
 export class BookListComponent implements OnInit{
   bookResponse: PageResponseBookResponse = {};
   page = 0;
-  size = 2;
+  size = 4;
   message = '';
   level = 'success'
 
